@@ -32,10 +32,14 @@ def count_neighbors(grid, row, col):
         (1, -1), (1, 0), (1, 1)
     ]
     count = 0
+    num_rows, num_cols = len(grid), len(grid[0])
+
     for dr, dc in neighbors:
-        r, c = row + dr, col + dc
-        if 0 <= r < len(grid) and 0 <= c < len(grid[0]):
-            count += grid[r][c]
+        # Wrap around using modulo
+        r = (row + dr) % num_rows
+        c = (col + dc) % num_cols
+        count += grid[r][c]
+
     return count
 
 
