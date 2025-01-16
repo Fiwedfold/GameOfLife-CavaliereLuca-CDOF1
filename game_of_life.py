@@ -83,12 +83,17 @@ def main():
     manually_place_cells(grid)
 
     print("Début de la simulation...")
+    ended = False
     try:
-        while True:
+        while (ended == False):
             clear_console()
             print_grid(grid)
+            previous_grid = grid
             grid = next_generation(grid)
+            if (previous_grid == grid):
+                ended = True
             time.sleep(0.5)
+        print("Final State reached!")
     except KeyboardInterrupt:
         print("\nSimulation arrêtée.")
 
